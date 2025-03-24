@@ -383,6 +383,7 @@ function showRandomTutuQuote() {
   const popup = L.popup({
     closeButton: false,
     autoClose: false,
+    closeOnClick: false,
     className: "tutu-quote-popup"
   })
   .setLatLng(coords)
@@ -404,6 +405,7 @@ function showRandomTutuQuote() {
 
   currentPopup = popup;
 }
+
 
 // 🔁 Recursive loop: 15s show + 5s pause
 function cycleQuotes() {
