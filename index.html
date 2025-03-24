@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Climate Justice Map - South Africa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        #filter-select {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .legend-item {
+            cursor: help;
+            margin-bottom: 5px;
+        }
+
+        .leaflet-control .legend {
+            background: white;
+            padding: 10px;
+            line-height: 26px;
+            font-size: 14px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            max-width: 200px;
+        }
+
+        .leaflet-popup-tip-container {
+            display: none;
+        }
+
+
+        .info-panel {
+            background: white;
+            padding: 12px 15px 10px 15px;
+            line-height: 1.4;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            max-width: 280px;
+            color: #333;
+            position: relative;
+        }
+
+        .info-panel h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #2a6c76;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .info-close {
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            line-height: 1;
+            color: #888;
+        }
+
+        .info-close:hover {
+            color: #c00;
+        }
+    </style>
+</head>
+
+<body>
+
+    <select id="filter-select">
+        <option value="All">All Categories</option>
+        <option value="redIcon">Air Pollution & Industry</option>
+        <option value="blueIcon">Water Scarcity & Drought</option>
+        <option value="greenIcon">Land & Mining Justice</option>
+        <option value="orangeIcon">Urban Vulnerability</option>
+        <option value="violetIcon">Environmental Health Conflict</option>
+    </select>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

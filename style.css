@@ -1,0 +1,32 @@
+.legend-item {
+    cursor: help;
+    margin-bottom: 5px;
+}
+
+.leaflet-control .legend {
+    background: white;
+    padding: 10px;
+    line-height: 26px;
+    font-size: 14px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    max-width: 200px;
+}
+
+
+.tutu-quote-popup {
+    animation: fadeIn 4s ease-in-out;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
