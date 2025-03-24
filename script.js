@@ -418,7 +418,7 @@ function startQuoteLoop() {
         setTimeout(() => {
             if (currentPopup) map.closePopup(currentPopup);
         }, 15000); // keep quote for 15s
-    }, 5000); // 5s interval
+    }, 20000); // 5s interval
 }
 
 // === Intro Panel / Info Box ===
