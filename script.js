@@ -372,54 +372,51 @@ const quoteLocations = [
 // === Random Quote Popups at Intervals ===
 let currentPopup = null;
 
+// Show one quote for 15s
 function showRandomTutuQuote() {
-    const quote = tutuQuotes[Math.floor(Math.random() * tutuQuotes.length)];
-    const coords = quoteLocations[Math.floor(Math.random() * quoteLocations.length)];
+  const quote = tutuQuotes[Math.floor(Math.random() * tutuQuotes.length)];
+  const coords = quoteLocations[Math.floor(Math.random() * quoteLocations.length)];
 
-    // Close previous popup if it exists
-    if (currentPopup) map.closePopup(currentPopup);
+  // Close the previous popup if it exists
+  if (currentPopup) map.closePopup(currentPopup);
 
-    // Create and show new popup
-    const popup = L.popup({
-        closeButton: false,
-        autoClose: false,
-        className: "tutu-quote-popup"
-    })
-        .setLatLng(coords)
-        .setContent(`
+  const popup = L.popup({
+    closeButton: false,
+    autoClose: false,
+    className: "tutu-quote-popup"
+  })
+  .setLatLng(coords)
+  .setContent(`
     <blockquote style="
-    font-style: italic;
-    font-size: 15px;
-    padding: 8px;
-    background: white;
-    border-left: 4px solid #5e9ca0;
-    border-radius: 5px;
-    margin: 0;
+      font-style: italic;
+      font-size: 15px;
+      padding: 8px;
+      background: white;
+      border-left: 4px solid #5e9ca0;
+      border-radius: 5px;
+      margin: 0;
     ">
-    “${quote}”
-    <br><span style="font-size: 0.9em;">— Desmond Tutu</span>
-    </blockquote>`)
-        .openOn(map);
+      “${quote}”
+      <br><span style="font-size: 0.9em;">— Desmond Tutu</span>
+    </blockquote>
+  `)
+  .openOn(map);
 
-    currentPopup = popup;
+  currentPopup = popup;
 }
 
-// 🚀 Show first quote on load (for 15s)
-showRandomTutuQuote();
-setTimeout(() => {
-    if (currentPopup) map.closePopup(currentPopup); // close after 15s
-    startQuoteLoop(); // begin regular quote cycle
-}, 15000);
-
-// 🔁 Begin regular quote cycle: show every 20s (15s visible, 5s pause)
-function startQuoteLoop() {
-    setInterval(() => {
-        showRandomTutuQuote();
-        setTimeout(() => {
-            if (currentPopup) map.closePopup(currentPopup);
-        }, 15000); // keep quote for 15s
-    }, 20000); // 5s interval
+// 🔁 Recursive loop: 15s show + 5s pause
+function cycleQuotes() {
+  showRandomTutuQuote(); // Show a quote
+  setTimeout(() => {
+    if (currentPopup) map.closePopup(currentPopup); // Close it
+    setTimeout(cycleQuotes, 5000); // Wait 5s, then repeat
+  }, 15000); // Quote stays for 15s
 }
+
+// 🚀 Start the first quote immediately
+cycleQuotes();
+
 
 // === Intro Panel / Info Box ===
 const infoPanel = L.control({ position: 'topright' });
